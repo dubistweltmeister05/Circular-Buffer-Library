@@ -52,3 +52,7 @@ size_t circular_buf_capacity(cbuf_handle_t buf);
 
 /// Returns the current number of elements in the buffer
 size_t circular_buf_size(cbuf_handle_t buf);
+
+static void advance_pointer(cbuf_handle_t buf);
+
+static void retreat_pointer(cbuf_handle_t buf);
