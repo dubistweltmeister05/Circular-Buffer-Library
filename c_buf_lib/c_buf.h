@@ -1,7 +1,13 @@
+#ifndef C_BUF_H
+#define C_BUF_H
+
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <assert.h>
+
+#include <windows.h>
 // Opaque circular buffer structure
 typedef struct circular_buf_t circular_buf_t;
 
@@ -11,6 +17,7 @@ struct circular_buf_t {
     size_t tail;
     size_t max;
     bool full;
+    HANDLE mtx;
 };
 
 // Handle type, the way users interact with the API
@@ -53,6 +60,4 @@ size_t circular_buf_capacity(cbuf_handle_t buf);
 /// Returns the current number of elements in the buffer
 size_t circular_buf_size(cbuf_handle_t buf);
 
-static void advance_pointer(cbuf_handle_t buf);
-
-static void retreat_pointer(cbuf_handle_t buf);
+#endif // C_BUF_H
